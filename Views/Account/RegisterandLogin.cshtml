@@ -1,0 +1,93 @@
+﻿@model RegisterViewModel
+<head>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="~/css/style.css">
+    @Layout
+    @{
+        ViewData["Title"] = "Register";
+    }
+</head>
+
+<body>
+    <div class="container">
+        <div class="form-box login">
+            <form asp-action="Register">
+                <h1>Login</h1>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="input-box">
+                    <input asp-for="EmailLogin" type="text" class="input" placeholder="Email">
+                    <span asp-validation-for="EmailLogin" class="text-danger"></span>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input asp-for="PasswordLogin" type="password" class="input" placeholder="Password" >
+                    <span asp-validation-for="PasswordLogin" class="text-danger"></span>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="forgot-link">
+                    <a href="ResetPassword.html">Forgot Password</a>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+
+                <p>Or login with social platforms</p>
+
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-google'></i></a>
+                    <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+                    <a href="#"><i class='bx bxl-github'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin-square'></i></a>
+                </div>
+
+            </form>
+        </div>
+        <div class="form-box regester">
+            <form action="">
+                <h1>Regestration</h1>
+                <div class="input-box">
+                    <input type="text" class="input" placeholder="Name" required>
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input type="email" class="input" placeholder="Email" required>
+                    <i class='bx bxs-envelope'></i>
+                </div>
+                <div class="input-box">
+                    <input type="password" class="input" placeholder="Password" required>
+                    <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="input-box">
+                    <select class="input" id="userType" required>
+                        <option value="">Select User Type</option>
+                        <option value="admin">Admin</option>
+                        <option value="user">User</option>
+                        <option value="Psychologist">Psychologist</option>
+                    </select>
+                </div>
+
+                <div id="extra-fields" class="extra-fields"></div>
+                <br>
+
+
+                <button type="submit" class="btn">Regestration</button>
+
+            </form>
+        </div>
+        <div class="toggle-box">
+            <div class="toggle-panel toggle-left">
+                <h1>Hello, Welcome!</h1>
+                <p>Don't have an account</p>
+                <button class=" btn btn-register">Regestration</button>
+            </div>
+            <div class="toggle-panel toggle-right">
+                <h1>Welcome Back!</h1>
+                <p>Alrady have an account</p>
+                <button class=" btn btn-login">Login</button>
+            </div>
+        </div>
+    </div>
+    @section Scripts {
+        <partial name="_ValidationscriptsPartial" />
+    }
+    <script src="~/js/script.js"></script>
+</body>

@@ -1,0 +1,71 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+    direction: rtl; /* ترتيب النصوص من اليمين لليسار */
+}
+
+/* تنسيق خلفية الصفحة */
+body {
+    background: linear-gradient(to bottom, #3835dd, #b51cd4); /* تدرج الألوان */
+    height: 100vh;
+    text-align: right; /* محاذاة النصوص إلى اليمين */
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    background-color: #b51cd4; /* اللون الهادئ */
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    /* z-index: 1000; */
+}
+
+    .nav .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+    }
+
+    .nav ul {
+        list-style: none;
+        display: flex;
+        gap: 20px;
+    }
+
+        .nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+            .nav ul li a:hover {
+                color: #000000;
+            }
+
+/* أزرار تسجيل الدخول وإنشاء حساب في الناف بار */
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+    .auth-buttons .btn {
+        padding: 10px 20px;
+        background-color: #3835dd;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .auth-buttons .btn:hover {
+            background-color: #000000;
+        }
