@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WithYou_project.Database;
 
@@ -11,9 +12,11 @@ using WithYou_project.Database;
 namespace WithYou_project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250510142310_SeedDataTable")]
+    partial class SeedDataTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -192,46 +195,46 @@ namespace WithYou_project.Migrations
                         new
                         {
                             AdminId = 1,
-                            Email = "sara@admin.com",
-                            Fname = "Sara",
-                            Lname = "Khalil",
-                            Password = "AdminPass1",
+                            Email = "ali1@example.com",
+                            Fname = "Ali",
+                            Lname = "Saleh",
+                            Password = "Password123",
                             Role = "SuperAdmin"
                         },
                         new
                         {
                             AdminId = 2,
-                            Email = "omar@admin.com",
-                            Fname = "Omar",
-                            Lname = "Nasser",
-                            Password = "AdminPass2",
-                            Role = "Moderator"
+                            Email = "sara@example.com",
+                            Fname = "Sara",
+                            Lname = "Khalil",
+                            Password = "Password1234",
+                            Role = "Admin"
                         },
                         new
                         {
                             AdminId = 3,
-                            Email = "lina@admin.com",
-                            Fname = "Lina",
-                            Lname = "Mansour",
-                            Password = "AdminPass3",
-                            Role = "Editor"
+                            Email = "mona@example.com",
+                            Fname = "Mona",
+                            Lname = "Naser",
+                            Password = "Password1235",
+                            Role = "Admin"
                         },
                         new
                         {
                             AdminId = 4,
-                            Email = "fadi@admin.com",
-                            Fname = "Fadi",
-                            Lname = "Qassem",
-                            Password = "AdminPass4",
+                            Email = "omar@example.com",
+                            Fname = "Omar",
+                            Lname = "Sami",
+                            Password = "Password1236",
                             Role = "Admin"
                         },
                         new
                         {
                             AdminId = 5,
-                            Email = "dina@admin.com",
-                            Fname = "Dina",
-                            Lname = "Salem",
-                            Password = "AdminPass5",
+                            Email = "lina@example.com",
+                            Fname = "Lina",
+                            Lname = "Ahmad",
+                            Password = "Password1237",
                             Role = "Admin"
                         });
                 });
@@ -268,42 +271,42 @@ namespace WithYou_project.Migrations
                         new
                         {
                             ArticleId = 1,
-                            Content = "Tips and exercises to manage anxiety.",
+                            Content = "Content about depression...",
                             PsychologistId = 1,
-                            PublishDate = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Managing Anxiety in Daily Life"
-                        },
-                        new
-                        {
-                            ArticleId = 2,
-                            Content = "Symptoms and coping strategies for depression.",
-                            PsychologistId = 2,
-                            PublishDate = new DateTime(2024, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PublishDate = new DateTime(2022, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Understanding Depression"
                         },
                         new
                         {
+                            ArticleId = 2,
+                            Content = "Content about therapy...",
+                            PsychologistId = 2,
+                            PublishDate = new DateTime(2022, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "The Importance of Therapy"
+                        },
+                        new
+                        {
                             ArticleId = 3,
-                            Content = "Workplace stress and how to manage it.",
+                            Content = "Content about anxiety...",
                             PsychologistId = 3,
-                            PublishDate = new DateTime(2024, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Stress Management at Work"
+                            PublishDate = new DateTime(2022, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "How to Cope with Anxiety"
                         },
                         new
                         {
                             ArticleId = 4,
-                            Content = "Steps towards recovery after traumatic experiences.",
+                            Content = "Content about stress...",
                             PsychologistId = 4,
-                            PublishDate = new DateTime(2024, 2, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Healing from Trauma"
+                            PublishDate = new DateTime(2022, 4, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Overcoming Stress"
                         },
                         new
                         {
                             ArticleId = 5,
-                            Content = "Understanding and processing grief.",
+                            Content = "Content about neuroscience...",
                             PsychologistId = 5,
-                            PublishDate = new DateTime(2024, 1, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Coping with Grief"
+                            PublishDate = new DateTime(2022, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Neuroscience and Mental Health"
                         });
                 });
 
@@ -345,46 +348,46 @@ namespace WithYou_project.Migrations
                         new
                         {
                             MessageId = 1,
-                            Content = "Feeling anxious today.",
+                            Content = "I'm feeling very low lately.",
                             ProblemId = 1,
                             PsychologistId = 1,
-                            Timestamp = new DateTime(2024, 5, 1, 10, 0, 0, 0, DateTimeKind.Unspecified),
+                            Timestamp = new DateTime(2022, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1
                         },
                         new
                         {
                             MessageId = 2,
-                            Content = "I need help dealing with sadness.",
+                            Content = "I feel anxious about upcoming events.",
                             ProblemId = 2,
                             PsychologistId = 2,
-                            Timestamp = new DateTime(2024, 5, 2, 11, 0, 0, 0, DateTimeKind.Unspecified),
+                            Timestamp = new DateTime(2022, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 2
                         },
                         new
                         {
                             MessageId = 3,
-                            Content = "Can't sleep due to stress.",
+                            Content = "Work is really stressful right now.",
                             ProblemId = 3,
                             PsychologistId = 3,
-                            Timestamp = new DateTime(2024, 5, 3, 9, 30, 0, 0, DateTimeKind.Unspecified),
+                            Timestamp = new DateTime(2022, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 3
                         },
                         new
                         {
                             MessageId = 4,
-                            Content = "Old memories resurfacing.",
+                            Content = "I can't control my anger at times.",
                             ProblemId = 4,
                             PsychologistId = 4,
-                            Timestamp = new DateTime(2024, 5, 4, 8, 45, 0, 0, DateTimeKind.Unspecified),
+                            Timestamp = new DateTime(2022, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 4
                         },
                         new
                         {
                             MessageId = 5,
-                            Content = "Feeling very alone.",
+                            Content = "I can't sleep at night.",
                             ProblemId = 5,
                             PsychologistId = 5,
-                            Timestamp = new DateTime(2024, 5, 5, 7, 15, 0, 0, DateTimeKind.Unspecified),
+                            Timestamp = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 5
                         });
                 });
@@ -429,8 +432,8 @@ namespace WithYou_project.Migrations
                         new
                         {
                             PaymentId = 1,
-                            Amount = 50m,
-                            Date = new DateTime(2024, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Amount = 100m,
+                            Date = new DateTime(2022, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Method = "Credit Card",
                             SessionId = 1,
                             Status = "Paid",
@@ -439,8 +442,8 @@ namespace WithYou_project.Migrations
                         new
                         {
                             PaymentId = 2,
-                            Amount = 40m,
-                            Date = new DateTime(2024, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Amount = 150m,
+                            Date = new DateTime(2022, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Method = "PayPal",
                             SessionId = 2,
                             Status = "Pending",
@@ -449,9 +452,9 @@ namespace WithYou_project.Migrations
                         new
                         {
                             PaymentId = 3,
-                            Amount = 45m,
-                            Date = new DateTime(2024, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Method = "Bank Transfer",
+                            Amount = 120m,
+                            Date = new DateTime(2022, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Method = "Debit Card",
                             SessionId = 3,
                             Status = "Paid",
                             UserId = 3
@@ -459,8 +462,8 @@ namespace WithYou_project.Migrations
                         new
                         {
                             PaymentId = 4,
-                            Amount = 55m,
-                            Date = new DateTime(2024, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Amount = 130m,
+                            Date = new DateTime(2022, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Method = "Cash",
                             SessionId = 4,
                             Status = "Paid",
@@ -469,9 +472,9 @@ namespace WithYou_project.Migrations
                         new
                         {
                             PaymentId = 5,
-                            Amount = 60m,
-                            Date = new DateTime(2024, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Method = "Credit Card",
+                            Amount = 140m,
+                            Date = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Method = "Bank Transfer",
                             SessionId = 5,
                             Status = "Pending",
                             UserId = 5
@@ -515,46 +518,46 @@ namespace WithYou_project.Migrations
                         new
                         {
                             ProblemId = 1,
-                            Description = "Severe anxiety issues",
-                            DiagnosisDate = new DateTime(2024, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Struggling with depression",
+                            DiagnosisDate = new DateTime(2022, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PsychologistId = 1,
-                            Type = "Anxiety",
+                            Type = "Mental Health",
                             UserId = 1
                         },
                         new
                         {
                             ProblemId = 2,
-                            Description = "Depression symptoms",
-                            DiagnosisDate = new DateTime(2024, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Anxiety issues",
+                            DiagnosisDate = new DateTime(2022, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PsychologistId = 2,
-                            Type = "Depression",
+                            Type = "Mental Health",
                             UserId = 2
                         },
                         new
                         {
                             ProblemId = 3,
-                            Description = "Stress at work",
-                            DiagnosisDate = new DateTime(2024, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Stress from work",
+                            DiagnosisDate = new DateTime(2022, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PsychologistId = 3,
-                            Type = "Stress",
+                            Type = "Mental Health",
                             UserId = 3
                         },
                         new
                         {
                             ProblemId = 4,
-                            Description = "Childhood trauma",
-                            DiagnosisDate = new DateTime(2024, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Difficulty managing emotions",
+                            DiagnosisDate = new DateTime(2022, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PsychologistId = 4,
-                            Type = "Trauma",
+                            Type = "Emotional Health",
                             UserId = 4
                         },
                         new
                         {
                             ProblemId = 5,
-                            Description = "Grieving loss of parent",
-                            DiagnosisDate = new DateTime(2024, 1, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Sleep disorders",
+                            DiagnosisDate = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PsychologistId = 5,
-                            Type = "Grief",
+                            Type = "Physical Health",
                             UserId = 5
                         });
                 });
@@ -602,57 +605,57 @@ namespace WithYou_project.Migrations
                         new
                         {
                             PsychologistId = 1,
-                            Certificates = "PhD Psychology",
-                            Email = "rami@psych.com",
+                            Certificates = "PhD in Psychology",
+                            Email = "ahmed@example.com",
                             ExperienceYears = 10,
-                            Fname = "Rami",
-                            Lname = "Awad",
-                            Password = "PsyPass1",
-                            Specialization = "Anxiety"
+                            Fname = "Dr. Ahmed",
+                            Lname = "Sami",
+                            Password = "pswd123",
+                            Specialization = "Clinical"
                         },
                         new
                         {
                             PsychologistId = 2,
-                            Certificates = "MA Clinical Psychology",
-                            Email = "nour@psych.com",
-                            ExperienceYears = 8,
-                            Fname = "Nour",
-                            Lname = "Hamed",
-                            Password = "PsyPass2",
-                            Specialization = "Depression"
+                            Certificates = "Masters in Counseling",
+                            Email = "noura@example.com",
+                            ExperienceYears = 5,
+                            Fname = "Dr. Noura",
+                            Lname = "Almasri",
+                            Password = "pswd123",
+                            Specialization = "Counseling"
                         },
                         new
                         {
                             PsychologistId = 3,
-                            Certificates = "MSc Behavioral Psychology",
-                            Email = "sami@psych.com",
-                            ExperienceYears = 6,
-                            Fname = "Sami",
-                            Lname = "Badran",
-                            Password = "PsyPass3",
-                            Specialization = "Stress"
+                            Certificates = "PhD in Behavioral Science",
+                            Email = "samer@example.com",
+                            ExperienceYears = 12,
+                            Fname = "Dr. Samer",
+                            Lname = "Hassan",
+                            Password = "pswd123",
+                            Specialization = "Behavioral"
                         },
                         new
                         {
                             PsychologistId = 4,
-                            Certificates = "PhD Psychology",
-                            Email = "huda@psych.com",
-                            ExperienceYears = 12,
-                            Fname = "Huda",
-                            Lname = "Zein",
-                            Password = "PsyPass4",
-                            Specialization = "Trauma"
+                            Certificates = "Masters in Psychology",
+                            Email = "mona@example.com",
+                            ExperienceYears = 8,
+                            Fname = "Dr. Mona",
+                            Lname = "Tariq",
+                            Password = "pswd123",
+                            Specialization = "Therapist"
                         },
                         new
                         {
                             PsychologistId = 5,
-                            Certificates = "MSc Clinical Psychology",
-                            Email = "ibrahim@psych.com",
-                            ExperienceYears = 9,
-                            Fname = "Ibrahim",
-                            Lname = "Saleh",
-                            Password = "PsyPass5",
-                            Specialization = "Grief"
+                            Certificates = "PhD in Neuroscience",
+                            Email = "layla@example.com",
+                            ExperienceYears = 15,
+                            Fname = "Dr. Layla",
+                            Lname = "Ibrahim",
+                            Password = "pswd123",
+                            Specialization = "Neuroscience"
                         });
                 });
 
@@ -692,46 +695,46 @@ namespace WithYou_project.Migrations
                         new
                         {
                             ReviewId = 1,
-                            Comment = "Very helpful session",
+                            Comment = "Great session, helped a lot",
                             PsychologistId = 1,
                             Rating = 5,
-                            ReviewDate = new DateTime(2024, 5, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2022, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 1
                         },
                         new
                         {
                             ReviewId = 2,
-                            Comment = "Good listener",
+                            Comment = "Very informative and useful",
                             PsychologistId = 2,
                             Rating = 4,
-                            ReviewDate = new DateTime(2024, 5, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2022, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 2
                         },
                         new
                         {
                             ReviewId = 3,
-                            Comment = "Helped with my stress",
+                            Comment = "Excellent session, highly recommend",
                             PsychologistId = 3,
-                            Rating = 4,
-                            ReviewDate = new DateTime(2024, 5, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rating = 5,
+                            ReviewDate = new DateTime(2022, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 3
                         },
                         new
                         {
                             ReviewId = 4,
-                            Comment = "Trauma guidance was excellent",
+                            Comment = "The session was okay, but could improve",
                             PsychologistId = 4,
-                            Rating = 5,
-                            ReviewDate = new DateTime(2024, 5, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Rating = 3,
+                            ReviewDate = new DateTime(2022, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 4
                         },
                         new
                         {
                             ReviewId = 5,
-                            Comment = "Very understanding",
+                            Comment = "Really helped me with my mental health",
                             PsychologistId = 5,
                             Rating = 5,
-                            ReviewDate = new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            ReviewDate = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             UserId = 5
                         });
                 });
@@ -777,51 +780,51 @@ namespace WithYou_project.Migrations
                         new
                         {
                             SessionId = 1,
-                            Date = new DateTime(2024, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Anxiety session",
+                            Date = new DateTime(2022, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Session on Depression",
                             PsychologistId = 1,
-                            Status = "Available",
+                            Status = "Completed",
                             Time = "10:00 AM",
                             UserId = 1
                         },
                         new
                         {
                             SessionId = 2,
-                            Date = new DateTime(2024, 6, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Depression support",
+                            Date = new DateTime(2022, 5, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Session on Anxiety",
                             PsychologistId = 2,
-                            Status = "Booked",
-                            Time = "2:00 PM",
+                            Status = "Scheduled",
+                            Time = "11:00 AM",
                             UserId = 2
                         },
                         new
                         {
                             SessionId = 3,
-                            Date = new DateTime(2024, 6, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Stress handling",
+                            Date = new DateTime(2022, 5, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Session on Stress Management",
                             PsychologistId = 3,
-                            Status = "Available",
-                            Time = "4:00 PM",
+                            Status = "Completed",
+                            Time = "12:00 PM",
                             UserId = 3
                         },
                         new
                         {
                             SessionId = 4,
-                            Date = new DateTime(2024, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Trauma discussion",
+                            Date = new DateTime(2022, 5, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Therapy Session",
                             PsychologistId = 4,
-                            Status = "Completed",
-                            Time = "11:00 AM",
+                            Status = "Scheduled",
+                            Time = "02:00 PM",
                             UserId = 4
                         },
                         new
                         {
                             SessionId = 5,
-                            Date = new DateTime(2024, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Grief counseling",
+                            Date = new DateTime(2022, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Mental Health Session",
                             PsychologistId = 5,
-                            Status = "Available",
-                            Time = "3:00 PM",
+                            Status = "Completed",
+                            Time = "03:00 PM",
                             UserId = 5
                         });
                 });
@@ -869,57 +872,57 @@ namespace WithYou_project.Migrations
                         new
                         {
                             UserId = 1,
-                            DateOfBirth = new DateTime(1995, 4, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "ahmad@example.com",
-                            Fname = "Ahmad",
+                            DateOfBirth = new DateTime(2000, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "yousef@example.com",
+                            Fname = "Yousef",
                             Gender = "Male",
                             Lname = "Ali",
-                            Password = "UserPass1",
+                            Password = "pass123",
                             Phone = "0591234567"
                         },
                         new
                         {
                             UserId = 2,
-                            DateOfBirth = new DateTime(1992, 8, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "mona@example.com",
-                            Fname = "Mona",
+                            DateOfBirth = new DateTime(1998, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "laila@example.com",
+                            Fname = "Laila",
                             Gender = "Female",
-                            Lname = "Yousef",
-                            Password = "UserPass2",
-                            Phone = "0597654321"
+                            Lname = "Hassan",
+                            Password = "pass123",
+                            Phone = "0591234568"
                         },
                         new
                         {
                             UserId = 3,
-                            DateOfBirth = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "nader@example.com",
-                            Fname = "Nader",
-                            Gender = "Male",
-                            Lname = "Issa",
-                            Password = "UserPass3",
-                            Phone = "0599876543"
+                            DateOfBirth = new DateTime(1995, 2, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "ola@example.com",
+                            Fname = "Ola",
+                            Gender = "Female",
+                            Lname = "Tariq",
+                            Password = "pass123",
+                            Phone = "0591234569"
                         },
                         new
                         {
                             UserId = 4,
-                            DateOfBirth = new DateTime(1988, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "layla@example.com",
-                            Fname = "Layla",
-                            Gender = "Female",
-                            Lname = "Samir",
-                            Password = "UserPass4",
-                            Phone = "0593332221"
+                            DateOfBirth = new DateTime(1990, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "hani@example.com",
+                            Fname = "Hani",
+                            Gender = "Male",
+                            Lname = "Mohsen",
+                            Password = "pass123",
+                            Phone = "0591234570"
                         },
                         new
                         {
                             UserId = 5,
-                            DateOfBirth = new DateTime(1990, 6, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "tariq@example.com",
-                            Fname = "Tariq",
+                            DateOfBirth = new DateTime(1993, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "sami@example.com",
+                            Fname = "Sami",
                             Gender = "Male",
-                            Lname = "Hassan",
-                            Password = "UserPass5",
-                            Phone = "0591237890"
+                            Lname = "Ibrahim",
+                            Password = "pass123",
+                            Phone = "0591234571"
                         });
                 });
 
