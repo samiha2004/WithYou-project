@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WithYou_project.Database;
 
@@ -11,9 +12,11 @@ using WithYou_project.Database;
 namespace WithYou_project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250510075456_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -218,41 +221,6 @@ namespace WithYou_project.Migrations
                     b.ToTable("Articles");
                 });
 
-            modelBuilder.Entity("WithYou_project.Database.Entities.Message", b =>
-                {
-                    b.Property<int>("MessageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"));
-
-                    b.Property<string>("Content")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProblemId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PsychologistId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Timestamp")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("MessageId");
-
-                    b.HasIndex("ProblemId");
-
-                    b.HasIndex("PsychologistId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Message");
-                });
-
             modelBuilder.Entity("WithYou_project.Database.Entities.Payment", b =>
                 {
                     b.Property<int>("PaymentId")
@@ -423,14 +391,9 @@ namespace WithYou_project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("SessionId");
 
                     b.HasIndex("PsychologistId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Session");
                 });
@@ -610,33 +573,6 @@ namespace WithYou_project.Migrations
                     b.Navigation("Psychologist");
                 });
 
-            modelBuilder.Entity("WithYou_project.Database.Entities.Message", b =>
-                {
-                    b.HasOne("WithYou_project.Database.Entities.Problem", "Problem")
-                        .WithMany()
-                        .HasForeignKey("ProblemId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WithYou_project.Database.Entities.Psychologist", "Psychologist")
-                        .WithMany("Messages")
-                        .HasForeignKey("PsychologistId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("WithYou_project.Database.Entities.User", "User")
-                        .WithMany("Message")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("Problem");
-
-                    b.Navigation("Psychologist");
-
-                    b.Navigation("User");
-                });
-
             modelBuilder.Entity("WithYou_project.Database.Entities.Payment", b =>
                 {
                     b.HasOne("WithYou_project.Database.Entities.Session", "Session")
@@ -702,22 +638,12 @@ namespace WithYou_project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WithYou_project.Database.Entities.User", "User")
-                        .WithMany("Sessions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Psychologist");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WithYou_project.Database.Entities.Psychologist", b =>
                 {
                     b.Navigation("Articles");
-
-                    b.Navigation("Messages");
 
                     b.Navigation("Problems");
 
@@ -728,15 +654,11 @@ namespace WithYou_project.Migrations
 
             modelBuilder.Entity("WithYou_project.Database.Entities.User", b =>
                 {
-                    b.Navigation("Message");
-
                     b.Navigation("Payments");
 
                     b.Navigation("Problems");
 
                     b.Navigation("Reviews");
-
-                    b.Navigation("Sessions");
                 });
 #pragma warning restore 612, 618
         }

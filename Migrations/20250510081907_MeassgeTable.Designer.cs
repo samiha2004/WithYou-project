@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WithYou_project.Database;
 
@@ -11,9 +12,11 @@ using WithYou_project.Database;
 namespace WithYou_project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250510081907_MeassgeTable")]
+    partial class MeassgeTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,9 +236,6 @@ namespace WithYou_project.Migrations
                     b.Property<int>("ProblemId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PsychologistId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("Timestamp")
                         .HasColumnType("datetime2");
 
@@ -245,8 +245,6 @@ namespace WithYou_project.Migrations
                     b.HasKey("MessageId");
 
                     b.HasIndex("ProblemId");
-
-                    b.HasIndex("PsychologistId");
 
                     b.HasIndex("UserId");
 
@@ -423,14 +421,9 @@ namespace WithYou_project.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("SessionId");
 
                     b.HasIndex("PsychologistId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("Session");
                 });
@@ -618,12 +611,6 @@ namespace WithYou_project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WithYou_project.Database.Entities.Psychologist", "Psychologist")
-                        .WithMany("Messages")
-                        .HasForeignKey("PsychologistId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("WithYou_project.Database.Entities.User", "User")
                         .WithMany("Message")
                         .HasForeignKey("UserId")
@@ -631,8 +618,6 @@ namespace WithYou_project.Migrations
                         .IsRequired();
 
                     b.Navigation("Problem");
-
-                    b.Navigation("Psychologist");
 
                     b.Navigation("User");
                 });
@@ -702,22 +687,12 @@ namespace WithYou_project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WithYou_project.Database.Entities.User", "User")
-                        .WithMany("Sessions")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Psychologist");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("WithYou_project.Database.Entities.Psychologist", b =>
                 {
                     b.Navigation("Articles");
-
-                    b.Navigation("Messages");
 
                     b.Navigation("Problems");
 
@@ -735,8 +710,6 @@ namespace WithYou_project.Migrations
                     b.Navigation("Problems");
 
                     b.Navigation("Reviews");
-
-                    b.Navigation("Sessions");
                 });
 #pragma warning restore 612, 618
         }

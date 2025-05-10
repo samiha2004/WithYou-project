@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WithYou_project.Database.Entities
 {
-    public class Admin
+    public class User
     {
         [Key]
-        public int AdminId { get; set; }
+        public int UserId { get; set; }
 
         [Required(ErrorMessage = "First name is required")]
         public string Fname { get; set; }
@@ -19,7 +19,6 @@ namespace WithYou_project.Database.Entities
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
-        [StringLength(100, MinimumLength = 8, ErrorMessage = "Password must be at least 8 characters long")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
@@ -29,10 +28,21 @@ namespace WithYou_project.Database.Entities
         [NotMapped]
         public string ConfirmPassword { get; set; }
 
-        [Required(ErrorMessage = "Role is required")]
-        public string Role { get; set; }
+        [Phone(ErrorMessage = "Invalid phone number")]
+        public string Phone { get; set; }
+
+        [Required(ErrorMessage = "Gender is required")]
+        public string Gender { get; set; }
+
+        [Required(ErrorMessage = "Date of birth is required")]
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }
+
+        // Navigation properties
+        public ICollection<Review> Reviews { get; set; }
+        public ICollection<Payment> Payments { get; set; }
+        public ICollection<Problem> Problems { get; set; }
+        public ICollection<Message> Message { get; set; } 
+        public ICollection<Session> Sessions { get; set; }
     }
 }
-
-    
-
