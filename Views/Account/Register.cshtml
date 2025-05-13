@@ -1,93 +1,148 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+﻿
+@model WithYou_project.Database.Entities.LoginModel;
+@{
+    ViewData["Title"] = "WithYou - بوابة الدخول";
+}
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="~/css/style.css">
-
-
-    <title>WithYou</title>
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/Css/style.css" />
 </head>
 
 <body>
-    <div class="container">
-        <div class="form-box login">
-            <form action="">
-                <h1>Login</h1>
-                <div class="input-box">
-                    <input type="text" class="input" placeholder="Email" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" class="input" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <div class="forgot-link">
-                    <a href="ResetPassword.html">Forgot Password</a>
-                </div>
-
-                <button type="submit" class="btn">Login</button>
-
-                <p>Or login with social platforms</p>
-
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-google'></i></a>
-                    <a href="#"><i class='bx bxl-facebook-circle'></i></a>
-                    <a href="#"><i class='bx bxl-github'></i></a>
-                    <a href="#"><i class='bx bxl-linkedin-square'></i></a>
-                </div>
-
-            </form>
-        </div>
-        <div class="form-box regester">
-            <form action="">
-                <h1>Regestration</h1>
-                <div class="input-box">
-                    <input type="text" class="input" placeholder="Name" required>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="email" class="input" placeholder="Email" required>
-                    <i class='bx bxs-envelope'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" class="input" placeholder="Password" required>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <div class="input-box">
-                    <select class="input" id="userType" required>
-                        <option value="">Select User Type</option>
-                        <option value="admin">Admin</option>
-                        <option value="user">User</option>
-                        <option value="Psychologist">Psychologist</option>
-                    </select>
-                </div>
-
-                <div id="extra-fields" class="extra-fields"></div>
-                <br>
-
-
-                <button type="submit" class="btn">Regestration</button>
-
-            </form>
-        </div>
-        <div class="toggle-box">
-            <div class="toggle-panel toggle-left">
-                <h1>Hello, Welcome!</h1>
-                <p>Don't have an account</p>
-                <button class=" btn btn-register">Regestration</button>
+    <div class="auth-container">
+        <div class="auth-hero">
+            <div class="auth-hero-content">
+                <h1>انضم إلى مجتمع WithYou</h1>
+                <p>منصة الرعاية النفسية الأولى التي تجمع بين المرضى وأفضل الأطباء المتخصصين</p>
+                <ul class="features-list">
+                    <li>جلسات علاجية مع أفضل الأخصائيين</li>
+                    <li>خصوصية وأمان تام لبياناتك</li>
+                    <li>إمكانية الحصول على استشارات فورية</li>
+                    <li>متابعة مستمرة لتطور حالتك</li>
+                </ul>
             </div>
-            <div class="toggle-panel toggle-right">
-                <h1>Welcome Back!</h1>
-                <p>Alrady have an account</p>
-                <button class=" btn btn-login">Login</button>
+        </div>
+
+        <div class="auth-forms">
+            <div class="auth-tabs">
+                <div class="auth-tab active" data-tab="login">تسجيل الدخول</div>
+                <div class="auth-tab" data-tab="register">إنشاء حساب</div>
+            </div>
+
+            <!-- تسجيل الدخول -->
+            <div class="auth-form active" id="login-form">
+                <h2 class="form-title">مرحبًا بعودتك!</h2>
+                <p class="form-subtitle">سجل دخولك للوصول إلى حسابك الشخصي</p>
+
+                <form method="post" asp-page-handler="Login">
+                    <div class="form-group">
+                        <input asp-for="Login.Email" class="form-control" placeholder=" " />
+                        <label asp-for="Login.Email" class="floating-label"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="Login.Password" class="form-control" placeholder=" " />
+                        <label asp-for="Login.Password" class="floating-label"></label>
+                    </div>
+
+                    <div class="form-group" style="text-align: left;">
+                        <a href="resetEmail.html" style="color: var(--primary); font-size: 0.9rem;">نسيت كلمة المرور؟</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
+                </form>
+            </div>
+
+            <!-- إنشاء حساب -->
+            <div class="auth-form" id="register-form">
+                <h2 class="form-title">أنشئ حسابك الآن</h2>
+                <p class="form-subtitle">اختر نوع الحساب المناسب لك</p>
+
+                <div class="account-type-switch">
+                    <div class="account-type active" data-type="patient">مستخدم</div>
+                    <div class="account-type" data-type="doctor">أخصائي</div>
+                    <div class="account-type-slider"></div>
+                </div>
+
+                <div class="form-alert alert-info" id="patient-alert">
+                    <i class="fas fa-info-circle"></i> كـ مستخدم يمكنك حجز الجلسات ومتابعة حالتك مع أفضل الأخصائيين
+                </div>
+                <div class="form-alert alert-warning" id="doctor-alert" style="display: none;">
+                    <i class="fas fa-exclamation-circle"></i> كـ أخصائي سيتم التحقق من بياناتك قبل تفعيل الحساب
+                </div>
+
+                <form method="post" enctype="multipart/form-data" asp-page-handler="Register">
+                    <div class="form-group">
+                        <input asp-for="Register.FullName" class="form-control" placeholder=" " />
+                        <label asp-for="Register.FullName" class="floating-label"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="Register.Email" class="form-control" placeholder=" " />
+                        <label asp-for="Register.Email" class="floating-label"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="Register.Password" class="form-control" placeholder=" " />
+                        <label asp-for="Register.Password" class="floating-label"></label>
+                    </div>
+
+                    <div class="form-group">
+                        <input asp-for="Register.Phone" class="form-control" placeholder=" " />
+                        <label asp-for="Register.Phone" class="floating-label"></label>
+                    </div>
+
+                    <!-- حقول الأخصائي -->
+                    <div id="doctor-fields" style="display: none;">
+                        <div class="form-group">
+                            <input asp-for="Register.Specialty" class="form-control" placeholder=" " />
+                            <label asp-for="Register.Specialty" class="floating-label"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="Register.LicenseNumber" class="form-control" placeholder=" " />
+                            <label asp-for="Register.LicenseNumber" class="floating-label"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <input asp-for="Register.YearsExperience" class="form-control" placeholder=" " />
+                            <label asp-for="Register.YearsExperience" class="floating-label"></label>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">صورة شخصية احترافية</label>
+                            <input asp-for="Register.ProfileImage" type="file" accept="image/*" />
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">مرفقات الشهادات (PDF)</label>
+                            <input asp-for="Register.CertificatesFile" type="file" accept=".pdf,.doc,.docx" />
+                        </div>
+                    </div>
+
+                    <div class="terms">
+                        <input asp-for="Register.AcceptTerms" />
+                        <label for="Register.AcceptTerms">أوافق على <a href="#">الشروط والأحكام</a> و<a href="#">سياسة الخصوصية</a></label>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">إنشاء حساب</button>
+                </form>
             </div>
         </div>
     </div>
 
-    <script src="~/js/script.js"></script>
+    <script src="~/Js/script.js"></script>
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
 </body>
 
 </html>

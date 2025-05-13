@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using WithYou_project.Database.Entities;
 using WithYou_project.Models;
 
@@ -8,50 +7,50 @@ namespace WithYou_project.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> userManager;
-        private readonly RoleManager<IdentityRole> roleManager;
-        private readonly SignInManager<ApplicationUser> signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
+
         public AccountController(UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager,
-            SignInManager<ApplicationUser> signInManager)
+        SignInManager<ApplicationUser> signInManager,
+        RoleManager<IdentityRole> roleManager)
         {
-            this.userManager = userManager;
-            this.roleManager = roleManager;
-            this.signInManager = signInManager;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager = roleManager;
         }
+
         [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(Register model)
-        
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
-                if (ModelState.IsValid)
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
                 {
-                    var user = new ApplicationUser
-                    {
-                        UserName = model.Name,
-                        Email = model.Email,
+                    UserName = model.Email,
+                    Email = model.Email,
+                    PhoneNumber = model.Phone
+                };
 
-                    };
-                    var result = await userManager.CreateAsync(user, model.Password);
-                    {
-                        if (result.Succeeded)
-                        {
-                            await userManager.AddToRoleAsync(user, "User");
-                            await signInManager.SignInAsync(user, isPersistent: false);
-                            return RedirectToAction("Index", "Home");
-                        }
-
-                        foreach (var error in result.Errors)
-                        {
-                            ModelState.AddModelError(string.Empty, error.Description);
-                        }
-                    }
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, "User");
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return RedirectToAction("Index", "Home");
                 }
+
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError(string.Empty, error.Description);
+            }
+
             return View(model);
         }
 
@@ -60,41 +59,39 @@ namespace WithYou_project.Controllers
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(Register model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var result=await signInManager.PasswordSignInAsync(model.EmailLogin,model.PasswordLogin,false,lockoutOnFailure:true);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, lockoutOnFailure: true);
+
                 if (result.Succeeded)
-                {
-                    RedirectToAction("Index", "Home");
-                }
+                    return RedirectToAction("Index", "Home");
+
                 if (result.IsLockedOut)
-                {
-                    return RedirectToAction("LockOut");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt");
-                    return View(model);
-                }
+                    return RedirectToAction("Lockout");
+
+                ModelState.AddModelError(string.Empty, "محاولة تسجيل دخول غير صحيحة.");
             }
+
             return View(model);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Logout()
         {
-            await signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");   
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
+
         [HttpGet]
         public IActionResult AccessDenied()
         {
             return View();
         }
     }
-
 }
