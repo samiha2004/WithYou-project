@@ -78,6 +78,10 @@ document.addEventListener('DOMContentLoaded', function () {
         alert(`تم إنشاء حساب ${accountType === 'doctor' ? 'أخصائي' : 'مستخدم'} بنجاح!`);
     });
 
+    function setHandler(actionType) {
+        document.getElementById('handler').value = actionType;
+    }
+
     // تأثيرات العائمة عند التركيز على الحقول
     const floatLabels = document.querySelectorAll('.floating-label');
     floatLabels.forEach(label => {
@@ -91,3 +95,19 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+function toggleAlerts() {
+    const select = document.getElementById("account-type-select");
+    const patientAlert = document.getElementById("patient-alert");
+    const doctorAlert = document.getElementById("doctor-alert");
+
+    if (select.value === "Patient") {
+        patientAlert.style.display = "block";
+        doctorAlert.style.display = "none";
+    } else if (select.value === "Doctor") {
+        patientAlert.style.display = "none";
+        doctorAlert.style.display = "block";
+    }
+}
+
+// تأكد من إظهار التنبيه الصحيح عند تحميل الصفحة أيضًا
+document.addEventListener("DOMContentLoaded", toggleAlerts);

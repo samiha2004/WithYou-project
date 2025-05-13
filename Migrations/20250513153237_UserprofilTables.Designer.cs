@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WithYou_project.Database;
 
@@ -11,9 +12,11 @@ using WithYou_project.Database;
 namespace WithYou_project.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250513153237_UserprofilTables")]
+    partial class UserprofilTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -717,39 +720,6 @@ namespace WithYou_project.Migrations
                             Password = "PsyPass5",
                             Specialization = "Grief"
                         });
-                });
-
-            modelBuilder.Entity("WithYou_project.Database.Entities.Resetemail", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("Resetemails");
-                });
-
-            modelBuilder.Entity("WithYou_project.Database.Entities.Resetpassword", b =>
-                {
-                    b.Property<string>("Email")
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("ConfirmPassword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NewPassword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Token")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Email");
-
-                    b.ToTable("Resetpasswords");
                 });
 
             modelBuilder.Entity("WithYou_project.Database.Entities.Review", b =>

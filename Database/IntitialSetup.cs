@@ -29,8 +29,7 @@ namespace WithYou_project.Database
                 {
                     Email = adminEmail,
                     UserName = adminEmail,
-                    FirstName = "Admin",
-                    LastName = "User",
+                    FullName = "Admin",
                     EmailConfirmed = true
 
                 };

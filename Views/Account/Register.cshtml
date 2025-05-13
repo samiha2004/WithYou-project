@@ -1,7 +1,13 @@
-﻿
-@model WithYou_project.Database.Entities.LoginModel;
+﻿@model WithYou_project.Database.Entities.AuthViewModel
 @{
     ViewData["Title"] = "WithYou - بوابة الدخول";
+    
+}
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["SuccessMessage"]
+    </div>
 }
 
 <!DOCTYPE html>
@@ -44,17 +50,22 @@
 
                 <form method="post" asp-page-handler="Login">
                     <div class="form-group">
-                        <input asp-for="Login.Email" class="form-control" placeholder=" " />
-                        <label asp-for="Login.Email" class="floating-label"></label>
+                        <input asp-for="LoginEmail" class="form-control" placeholder=" " />
+                        <label asp-for="LoginEmail" class="floating-label"></label>
+                        <span asp-validation-for="LoginEmail" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <input asp-for="Login.Password" class="form-control" placeholder=" " />
-                        <label asp-for="Login.Password" class="floating-label"></label>
+                        <input asp-for="LoginPassword" class="form-control" placeholder=" " />
+                        <label asp-for="LoginPassword" class="floating-label"></label>
+                        <span asp-validation-for="LoginPassword" class="text-danger"></span>
                     </div>
 
                     <div class="form-group" style="text-align: left;">
-                        <a href="resetEmail.html" style="color: var(--primary); font-size: 0.9rem;">نسيت كلمة المرور؟</a>
+                        <a href="@Url.Action("ResetPassword", "Account")" style="color: var(--primary); font-size: 0.9rem;">
+                            نسيت كلمة المرور؟
+                        </a>
+
                     </div>
 
                     <button type="submit" class="btn btn-primary">تسجيل الدخول</button>
@@ -66,71 +77,82 @@
                 <h2 class="form-title">أنشئ حسابك الآن</h2>
                 <p class="form-subtitle">اختر نوع الحساب المناسب لك</p>
 
-                <div class="account-type-switch">
-                    <div class="account-type active" data-type="patient">مستخدم</div>
-                    <div class="account-type" data-type="doctor">أخصائي</div>
-                    <div class="account-type-slider"></div>
+                <div class="form-group">
+                    <label>نوع الحساب</label>
+                    <select asp-for="AccountType" class="form-control" id="account-type-select" onchange="toggleAlerts()">
+                        <option value="Patient">مستخدم</option>
+                        <option value="Doctor">أخصائي</option>
+                    </select>
+                    <span asp-validation-for="AccountType" class="text-danger"></span>
                 </div>
 
                 <div class="form-alert alert-info" id="patient-alert">
                     <i class="fas fa-info-circle"></i> كـ مستخدم يمكنك حجز الجلسات ومتابعة حالتك مع أفضل الأخصائيين
                 </div>
+
                 <div class="form-alert alert-warning" id="doctor-alert" style="display: none;">
                     <i class="fas fa-exclamation-circle"></i> كـ أخصائي سيتم التحقق من بياناتك قبل تفعيل الحساب
                 </div>
 
+
+
                 <form method="post" enctype="multipart/form-data" asp-page-handler="Register">
                     <div class="form-group">
-                        <input asp-for="Register.FullName" class="form-control" placeholder=" " />
-                        <label asp-for="Register.FullName" class="floating-label"></label>
+                        <input asp-for="FullName" class="form-control" placeholder=" " />
+                        <label asp-for="FullName" class="floating-label"></label>
+                        <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <input asp-for="Register.Email" class="form-control" placeholder=" " />
-                        <label asp-for="Register.Email" class="floating-label"></label>
+                        <input asp-for="Email" class="form-control" placeholder=" " />
+                        <label asp-for="Email" class="floating-label"></label>
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <input asp-for="Register.Password" class="form-control" placeholder=" " />
-                        <label asp-for="Register.Password" class="floating-label"></label>
+                        <input asp-for="Password" class="form-control" placeholder=" " />
+                        <label asp-for="Password" class="floating-label"></label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <input asp-for="Register.Phone" class="form-control" placeholder=" " />
-                        <label asp-for="Register.Phone" class="floating-label"></label>
+                        <input asp-for="Phone" class="form-control" placeholder=" " />
+                        <label asp-for="Phone" class="floating-label"></label>
+                        <span asp-validation-for="Phone" class="text-danger"></span>
                     </div>
 
                     <!-- حقول الأخصائي -->
                     <div id="doctor-fields" style="display: none;">
                         <div class="form-group">
-                            <input asp-for="Register.Specialty" class="form-control" placeholder=" " />
-                            <label asp-for="Register.Specialty" class="floating-label"></label>
+                            <input asp-for="Specialty" class="form-control" placeholder=" " />
+                            <label asp-for="Specialty" class="floating-label"></label>
                         </div>
 
                         <div class="form-group">
-                            <input asp-for="Register.LicenseNumber" class="form-control" placeholder=" " />
-                            <label asp-for="Register.LicenseNumber" class="floating-label"></label>
+                            <input asp-for="LicenseNumber" class="form-control" placeholder=" " />
+                            <label asp-for="LicenseNumber" class="floating-label"></label>
                         </div>
 
                         <div class="form-group">
-                            <input asp-for="Register.YearsExperience" class="form-control" placeholder=" " />
-                            <label asp-for="Register.YearsExperience" class="floating-label"></label>
+                            <input asp-for="YearsExperience" class="form-control" placeholder=" " />
+                            <label asp-for="YearsExperience" class="floating-label"></label>
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">صورة شخصية احترافية</label>
-                            <input asp-for="Register.ProfileImage" type="file" accept="image/*" />
+                            <input asp-for="ProfileImage" type="file" accept="image/*" />
                         </div>
 
                         <div class="form-group">
                             <label class="form-label">مرفقات الشهادات (PDF)</label>
-                            <input asp-for="Register.CertificatesFile" type="file" accept=".pdf,.doc,.docx" />
+                            <input asp-for="CertificatesFile" type="file" accept=".pdf,.doc,.docx" />
                         </div>
                     </div>
 
                     <div class="terms">
-                        <input asp-for="Register.AcceptTerms" />
-                        <label for="Register.AcceptTerms">أوافق على <a href="#">الشروط والأحكام</a> و<a href="#">سياسة الخصوصية</a></label>
+                        <input asp-for="AcceptTerms" />
+                        <label asp-for="AcceptTerms">أوافق على <a href="#">الشروط والأحكام</a> و<a href="#">سياسة الخصوصية</a></label>
+                        <span asp-validation-for="AcceptTerms" class="text-danger"></span>
                     </div>
 
                     <button type="submit" class="btn btn-primary">إنشاء حساب</button>
@@ -140,6 +162,7 @@
     </div>
 
     <script src="~/Js/script.js"></script>
+
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }

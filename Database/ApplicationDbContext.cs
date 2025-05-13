@@ -221,9 +221,15 @@ namespace WithYou_project.Database
         public DbSet<Session> Session { get; set; }
         public DbSet<Review> Review { get; set; }
         public DbSet<Message> Message { get; set; }
-        
-        
-      
+
+        public DbSet<AuthViewModel> AuthViewModel { get; set; }
+
+        public DbSet<UserProfile> UserProfiles { get; set; }
+
+        public DbSet<Resetpassword> Resetpasswords { get; set; }
+        public DbSet<Resetemail> Resetemails { get; set; }
+
+
 
     }
 }
